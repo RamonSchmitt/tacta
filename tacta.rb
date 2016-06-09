@@ -1,17 +1,50 @@
 def index(contacts)
-   contacts.each_with_index do |contact, i|
+  contacts.each_with_index do |contact, i|
      puts "#{i+1}) #{contact[:name]}"
   end
 end
 
-def show(contact)
-  puts
-  puts "#{contact[:name]}"
-  puts "phone: #{contact[:phone]}"
-  puts "email: #{contact[:email]}"
+def action_new( contacts )
+   contact = create_new
+
+   contacts << contact
+
+   puts
+   puts "New contact created:"
+   puts
+
+   show( contact )
+   puts
 end
 
-def ask( prompt )
+def action_show( contacts, i )
+   contact = contacts[i-1]
+
+   puts
+   show( contact )
+   puts
+end
+
+def create_new
+   contact = {}
+
+   puts
+   puts "Enter contact info:"
+
+   contact[:name ] = ask "Name? "
+   contact[:phone] = ask "Phone? "
+   contact[:email] = ask "Email? "
+
+   contact
+end
+
+def show(contact)
+   puts "#{contact[:name]}"
+   puts "phone: #{contact[:phone]}"
+   puts "email: #{contact[:email]}"
+end
+
+def ask(prompt)
    puts
    print prompt
    gets.chomp
@@ -26,14 +59,16 @@ contacts << { name: "Genghis Khan"    , phone: "+976 2 194 2222" , email: "conta
 contacts << { name: "Malcom X"        , phone: "+1 310 155 8822" , email: "x@theroost.org"     }
 
 loop do
-  index(contacts)
+   index( contacts )
 
-  response = ask("Who would you like to see? ")
-  break if response == "q"
-  i = response.to_i
+   puts
+   response = ask "Who would you like to see (n for new, q to quit)? "
 
-  contact = contacts[i-1]
+   break if response == "q"
 
-  show(contact)
-  puts
+   if response == "n"
+      action_new( contacts )
+   else
+      action_show( contacts, response.to_i )
+   end
 end
