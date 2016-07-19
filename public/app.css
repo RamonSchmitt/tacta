@@ -1,0 +1,28 @@
+h1 {
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #ff8300 !important;
+}
+
+h2 {
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #666666;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 24px;
+}
+.jumbotron {
+  background-color: #222222;
+}
+a {
+  color: #666666;
+  text-decoration: none !important;
+}
+a:hover {
+  color: #ff8300;
+}
+p {
+  color: #bbbbbb;
+}
